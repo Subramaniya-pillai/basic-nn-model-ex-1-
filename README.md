@@ -1,16 +1,15 @@
 # Developing a Neural Network Regression Model
 
-## AIM
+## AIM:
 
 To develop a neural network regression model for the given dataset.
 
-## THEORY
+## THEORY:
 
 Explain the problem statement
 
 ## Neural Network Model
-
-Include the neural network model diagram.
+![git](./05.png)
 
 ## DESIGN STEPS
 
@@ -42,26 +41,59 @@ Plot the performance plot
 
 Evaluate the model with the testing data.
 
-## PROGRAM
+## PROGRAM:
+```
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras import layers
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Sequential
 
-Include your code here
+x=df[['id']].values
+y=df[['age']].values
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.33,random_state=33)
+scaler = MinMaxScaler()
+scaler.fit(x)
+x_n = scaler.fit_transform(x)
 
-## Dataset Information
+x_train1=scaler.transform(x_train)
+x_train1
 
-Include screenshot of the dataset
+ai_brain=Sequential([
+    Dense(8,activation = 'relu'),
+    Dense(10,activation = 'relu'),
+    Dense(1)
+])
+ai_brain.compile(optimizer='rmsprop',loss='mse')
+ai_brain.fit(x_train1,y_train,epochs=2000)
 
-## OUTPUT
+loss_df=pd.DataFrame(ai_brain.history.history)
+loss_df.plot()
+x_test1=scaler.transform(x_test)
+ai_brain.evaluate(x_test1,y_test)
+x_n1=[[4]]
+x_n1_1=scaler.transform(x_n1)
+
+ai_brain.predict(x_n1_1)
+```
+
+## Dataset Information:
+### DATASET:
+![git](01.jpeg)
+
+## OUTPUT:
 
 ### Training Loss Vs Iteration Plot
 
-Include your plot here
+![git](02.jpeg)
 
 ### Test Data Root Mean Squared Error
-
-Find the test data root mean squared error
+![git](./04.jpeg)
 
 ### New Sample Data Prediction
-
-Include your sample input and output here
+![git](03.jpeg)
 
 ## RESULT
+Thus a neural network regression model for the given dataset is written and executed successfully.
+
+
