@@ -43,6 +43,10 @@ Evaluate the model with the testing data.
 
 ## PROGRAM:
 ```
+DEVELOPED BY: SUBRAMANIYA PILLAI B
+REG NO      : 212221230109
+```
+```p
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras import layers
